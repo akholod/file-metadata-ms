@@ -14,7 +14,7 @@ router.post("/upload", upload.single("file"), (req,res) => {
 });
 
 router.get('/', (req, res) => {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'File Microservice' });
 });
 
 

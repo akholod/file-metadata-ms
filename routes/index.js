@@ -1,9 +1,21 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const path = require('path');
+const multer  = require('multer');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
+var upload = multer({ dist: (path.join(__dirname, '../uploads')) });
+
+router.post("/upload", upload.single("file"), (req,res) => {
+  console.log(req.file);
+  res.json({"size": req.file.size + " bytes",
+            "type": req.file.mimetype,
+            "ext": req.file.originalname.split('.')[1]
+  })
+});
+
+router.get('/', (req, res) => {
   res.render('index', { title: 'Express' });
 });
+
 
 module.exports = router;

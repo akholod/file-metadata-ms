@@ -12,21 +12,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
-app.listen(port, function () {
+app.listen(port, () => {
   console.log('App listening on port ' + port);
 });
 
 
 // error handlers
-
-// development error handler
-// will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
